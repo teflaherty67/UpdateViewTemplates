@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Command UpdateViewTemplates</Text>
+    <Description>Some description for UpdateViewTemplates</Description>
+    <Assembly>UpdateViewTemplates.dll</Assembly>
+    <FullClassName>UpdateViewTemplates.Command</FullClassName>
+    <ClientId>dd60494c-45c0-47e9-a96a-f58e7aa4d9be</ClientId>
+    <VendorId>com.YOUR COMPANY NAME</VendorId>
+    <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
+  </AddIn>
+  <AddIn Type="Application">
+    <Name>Application UpdateViewTemplates</Name>
+    <Assembly>UpdateViewTemplates.dll</Assembly>
+    <FullClassName>UpdateViewTemplates.App</FullClassName>
+    <ClientId>9ae950db-4fba-423b-ad93-b17c7e93c6cf</ClientId>
+    <VendorId>com.YOUR COMPANY NAME</VendorId>
+    <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
+  </AddIn>
+</RevitAddIns>
