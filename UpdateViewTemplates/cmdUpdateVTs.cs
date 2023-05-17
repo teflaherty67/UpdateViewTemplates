@@ -29,27 +29,35 @@ namespace UpdateViewTemplates
             // get all the view templates in the project
             List<View> curVTs = Utils.GetAllViewTemplates(doc);
 
-            // delete all view templates that start with a letter
-            // or a number, except 17
-            foreach (View curVT in curVTs)
+            using (Transaction t = new Transaction(doc))
             {
-                // get the name of the view template
-                string curName = curVT.Name;
-                
-                // check if first character is letter
-                bool isLetter = !String.IsNullOrEmpty(curName) && Char.IsLetter(curName[0]);
+                t.Start("Update View Templates");
 
-                // check if first two charactera is number
-                string firstTwo = curName.Substring(0,1);
-                
-
-                // if yes, delete it
-                if (isLetter == true)
+                // delete all view templates that start with a letter or a number, except 17
+                foreach (View curVT in curVTs)
                 {
-                    doc.Delete(curVT.Id);
+                    // get the name of the view template
+                    string curName = curVT.Name;
+
+                    // check if first character is letter
+                    bool isLetter = !String.IsNullOrEmpty(curName) && Char.IsLetter(curName[0]);
+
+                    // check if first two charactera is number
+                    //string firstTwo = curName.Substring(0, 1);
+
+
+                    // if yes, delete it
+                    if (isLetter == true)
+                    {
+                        try
+                        {
+                            doc.Delete(curVT.Id);
+                        }
+                        catch (Exception)
+                        {
+                        }                        
+                    }
                 }
-
-
             }
 
             // transfer the current view templates from the template file
