@@ -45,6 +45,7 @@ namespace UpdateViewTemplates
             return m_views;
         }
 
+        #region View Templates
         public static List<View> GetAllViewTemplates(Document curDoc)
         {
             List<View> returnList = new List<View>();
@@ -63,12 +64,12 @@ namespace UpdateViewTemplates
             return returnList;
         }
 
-        internal static List<string> GetAllViewTemplateNames(Document doc)
+        public static List<string> GetAllViewTemplateNames(Document m_doc)
         {
             //returns list of view templates
             List<string> viewTempList = new List<string>();
             List<View> viewList = new List<View>();
-            viewList = GetAllViews(doc);
+            viewList = GetAllViews(m_doc);
 
             //loop through views and check if is view template
             foreach (View v in viewList)
@@ -82,5 +83,89 @@ namespace UpdateViewTemplates
 
             return viewTempList;
         }
+
+        public static View GetViewTemplateByName(Document curDoc, string viewTemplateName)
+        {
+            List<View> viewTemplateList = GetAllViewTemplates(curDoc);
+
+            foreach (View v in viewTemplateList)
+            {
+                if (v.Name == viewTemplateName)
+                {
+                    return v;
+                }
+            }
+
+            return null;
+        }
+
+        #endregion
+
+        internal static Parameter GetParameterByName(Element curElem, string paramName)
+        {
+            foreach (Parameter curParam in curElem.Parameters)
+            {
+                if (curParam.Definition.Name.ToString() == paramName)
+                    return curParam;
+            }
+
+            return null;
+        }
+
+        internal static void SetParameterByName(Element element, string paramName, string value)
+        {
+            IList<Parameter> paramList = element.GetParameters(paramName);
+
+            if (paramList != null)
+            {
+                Parameter param = paramList[0];
+
+                param.Set(value);
+            }
+        }
+
+        internal static void SetParameterByName(Element element, string paramName, int value)
+        {
+            IList<Parameter> paramList = element.GetParameters(paramName);
+
+            if (paramList != null)
+            {
+                Parameter param = paramList[0];
+
+                param.Set(value);
+            }
+        }
+
+        #region Categories
+        public static List<String> GetAllCategories(Document curDoc)
+        {
+            List<String> catList = new List<String>();
+
+            //loop through categories in current model file
+            foreach (Category curCat in curDoc.Settings.Categories)
+            {
+                //add to list
+                catList.Add(curCat.Name);
+            }
+            //sort list
+            catList.Sort();
+            return catList;
+        }
+
+        internal static List<View> GetAllViewsByCategory(Document doc, string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static List<View> GetAllViewsByCategoryAndNameContains(Document doc, string v1, string v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static List<View> GetAllViewsByCategoryNameContains(Document doc, string v)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

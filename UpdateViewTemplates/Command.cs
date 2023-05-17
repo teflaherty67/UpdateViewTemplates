@@ -31,12 +31,74 @@ namespace UpdateViewTemplates
             List<View> vtList = Utils.GetAllViewTemplates(doc);
 
             List<string> vtNames = Utils.GetAllViewTemplateNames(doc);
+            vtNames.Sort();
 
-            // if the project contains View Template names 00-Form/Foundation Plan
+            List<string> vtNameList = new List<string> { "15", "14", "13", "12", "11", "10", "09", "08", "07" };
 
-            // then increase number by 1 for 07 - 15 & change 16 to 18
+            string vtForm = "00-Form/Foundation Plan";
+
+            string vtFrmgElev = "16-Framing Elevation";
+
+            // if the project contains View Template named 00-Form/Foundation Plan
+
+            // then increase number by 1 for 07 - 15 & change 16 to 18 & 00 to 07
 
             // update the Category parameter to match
+
+            using (Transaction t = new Transaction(doc))
+            {
+                t.Start("Update View Templates");
+                {
+                    if (vtNames.Contains(vtForm))
+                    {
+                        foreach (View curView in vtList)
+                        {
+                            if (curView.Name == vtFrmgElev)
+                            {
+                                curView.Name = curView.Name.Replace(vtFrmgElev, "18-Framing Elevation");
+
+                                Parameter catParam = null;
+
+                                string curCat = "";
+
+                                foreach (Parameter curParam in curView.Parameters)
+                                {
+                                    if (curParam.Definition.Name == "Category")
+                                    {
+                                        catParam = curParam;
+
+                                        curCat = curParam.AsString();
+                                    }
+                                }
+
+                                // change the value of the caegory parameter, replace '-' with ':'
+                            }
+
+                            // then loop through vtList looking for names that contain
+                            // strings in vtNamesList and increment them by 1 number
+
+                            // then change 00-Form/Foundation Plan to 07-Form/Foundation Plan
+                        }
+
+                        // then loop through vt
+                    }
+
+                    //foreach (View curView in vtList)
+                    //{
+                    //    if (curView.Name == vtForm)
+                    //    {
+                    //        curView.Name = curView.Name.Replace(vtForm, "07-Form/Foundation Plan");
+                    //    }
+
+                    //    if (curView.Name == vtFrmgElev)
+                    //    {
+                    //        curView.Name = curView.Name.Replace(vtFrmgElev, "18-Framing Elevation");
+                    //    }
+                    //}
+                }
+
+                t.Commit();
+            }
             
             return Result.Succeeded;
         }
