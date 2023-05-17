@@ -34,21 +34,24 @@ namespace UpdateViewTemplates
             List<View> vtList = Utils.GetAllViewTemplates(doc);
 
             // set the path for the source document
-            string sourcePath = 
+            string sourcePath = @"S:\Shared Folders\Lifestyle USA Design\Library 2023\Template\View Templates.rvt";
 
-            
             using (Transaction t = new Transaction(doc))
             {
                 t.Start("Update View Templates");
                 {
                     foreach (View curView in viewList)
                     {
+                        // set the assigned view template to None on all views
                         curView.ViewTemplateId = ElementId.InvalidElementId;
                     }
                     foreach (View curView in vtList)
                     {
+                        // delete all view templates
                         doc.Delete(curView.Id);
                     }
+
+                    // transfer view templates from template file
                 }
 
                 t.Commit();
