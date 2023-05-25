@@ -47,8 +47,11 @@ namespace UpdateViewTemplates
                     }
                     foreach (View curView in vtList)
                     {
-                        // delete all view templates
-                        doc.Delete(curView.Id);
+                        // delete all view templates unless they start with a hyphen
+                        if(curView.Name.StartsWith("-") != true)
+                        {
+                            doc.Delete(curView.Id);
+                        }                        
                     }
 
                     // transfer view templates from template file
