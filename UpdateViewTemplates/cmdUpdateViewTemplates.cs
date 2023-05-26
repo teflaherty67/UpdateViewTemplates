@@ -31,12 +31,14 @@ namespace UpdateViewTemplates
             UIDocument newUIDoc = uiapp.OpenAndActivateDocument(revitFile);
             Document newDoc = newUIDoc.Document;
 
-            FilteredElementCollector collector = new FilteredElementCollector(newDoc);
-            collector.OfCategory(BuiltInCategory.OST_IOSModelGroups);
-            collector.WhereElementIsNotElementType();
+            // chnage code to get view templates
+
+            FilteredElementCollector colVT = new FilteredElementCollector(newDoc);
+            colVT.OfCategory(BuiltInCategory.OST_Views);
+            colVT.WhereElementIsElementType();
 
             List<ElementId> groupIdList = new List<ElementId>();
-            foreach (Element curElem in collector)
+            foreach (Element curElem in colVT)
             {
                 groupIdList.Add(curElem.Id);
             }
@@ -46,7 +48,7 @@ namespace UpdateViewTemplates
 
             using (Transaction t = new Transaction(doc))
             {
-                t.Start("Load groups");
+                t.Start("Load View Templates");
                 ElementTransformUtils.CopyElements(newDoc, groupIdList, doc, transform, options);
                 t.Commit();
             }
