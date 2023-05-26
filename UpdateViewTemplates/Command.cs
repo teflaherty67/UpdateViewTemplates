@@ -68,5 +68,14 @@ namespace UpdateViewTemplates
             var method = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
             return method;
         }
+
+        public static ICollection<ElementId> CopyElements(Document sourceDocument,
+            ICollection<ElementId> elementsToCopy, 
+            Document destinationDocument, 
+            Transform transform, 
+            CopyPasteOptions options)
+        {
+            return null;
+        }
     }
 }
