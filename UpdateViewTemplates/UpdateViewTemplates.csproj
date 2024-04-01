@@ -43,12 +43,10 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="RevitAPI">
-      <HintPath>$(ProgramW6432)\Autodesk\Revit 2023\RevitAPI.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPI.dll</HintPath>
     </Reference>
     <Reference Include="RevitAPIUI">
-      <HintPath>$(ProgramW6432)\Autodesk\Revit 2023\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPIUI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -98,8 +96,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if exist "$(AppData)\Autodesk\REVIT\Addins\2023" copy "$(ProjectDir)*.addin" "$(AppData)\Autodesk\REVIT\Addins\2023"
-if exist "$(AppData)\Autodesk\REVIT\Addins\2023" copy "$(ProjectDir)$(OutputPath)*.dll" "$(AppData)\Autodesk\REVIT\Addins\2023"</PostBuildEvent>
+    <PostBuildEvent>if exist "$(AppData)\Autodesk\REVIT\Addins\2024" copy "$(ProjectDir)*.addin" "$(AppData)\Autodesk\REVIT\Addins\2023"
+if exist "$(AppData)\Autodesk\REVIT\Addins\2024" copy "$(ProjectDir)$(OutputPath)*.dll" "$(AppData)\Autodesk\REVIT\Addins\2023"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

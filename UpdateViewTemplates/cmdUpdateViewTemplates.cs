@@ -26,12 +26,11 @@ namespace UpdateViewTemplates
             Document doc = uidoc.Document;
 
             string revitFile = @"S:\Shared Folders\Lifestyle USA Design\Library 2023\Template\View Templates.rvt";
-
             
             UIDocument newUIDoc = uiapp.OpenAndActivateDocument(revitFile);
             Document newDoc = newUIDoc.Document;
 
-            // chnage code to get view templates
+            // change code to get view templates
 
             FilteredElementCollector colVT = new FilteredElementCollector(newDoc);
             colVT.OfCategory(BuiltInCategory.OST_Views);
