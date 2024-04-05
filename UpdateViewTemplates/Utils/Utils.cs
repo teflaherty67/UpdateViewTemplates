@@ -167,5 +167,42 @@ namespace UpdateViewTemplates
             throw new NotImplementedException();
         }
         #endregion
+
+        internal static void LoadViewTemplates(UIApplication uiapp, Document doc, string fileName)
+        {        
+            UIDocument newUIDoc = uiapp.OpenAndActivateDocument(fileName);
+            Document newDoc = newUIDoc.Document;
+
+            // change code to get view templates
+
+            // get all the view templates
+            List<View> vtList = Utils.GetAllViewTemplates(newDoc);
+
+            List<ElementId> groupIdList = new List<ElementId>();
+            foreach (Element curElem in vtList)
+            {
+                groupIdList.Add(curElem.Id);
+            }
+
+            Transform transform = null;
+            CopyPasteOptions options = new CopyPasteOptions();
+
+            using (Transaction t = new Transaction(doc))
+            {
+                t.Start("Load View Templates");
+                ElementTransformUtils.CopyElements(newDoc, groupIdList, doc, transform, options);
+                t.Commit();
+            }
+
+            try
+            {
+                uiapp.OpenAndActivateDocument(doc.PathName);
+                newDoc.Close(false);
+            }
+            catch (Exception)
+            { }
+
+            TaskDialog.Show("Complete", "Loaded " + groupIdList.Count.ToString() + " groups into the current model.");
+        }
     }
 }

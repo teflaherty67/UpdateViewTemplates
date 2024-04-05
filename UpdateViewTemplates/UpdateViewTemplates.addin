@@ -9,6 +9,15 @@
     <VendorId>com.YOUR COMPANY NAME</VendorId>
     <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
   </AddIn>
+  <AddIn Type="Command">
+    <Text>Command ReplaceViewTemplates</Text>
+    <Description>Some description for UpdateViewTemplates</Description>
+    <Assembly>UpdateViewTemplates.dll</Assembly>
+    <FullClassName>UpdateViewTemplates.CmdLoadGroups</FullClassName>
+    <ClientId>dd60494c-45d0-47e9-a96a-f58e7aa4d9be</ClientId>
+    <VendorId>com.YOUR COMPANY NAME</VendorId>
+    <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
+  </AddIn>
   <AddIn Type="Application">
     <Name>Application UpdateViewTemplates</Name>
     <Assembly>UpdateViewTemplates.dll</Assembly>

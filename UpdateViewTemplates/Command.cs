@@ -34,7 +34,7 @@ namespace UpdateViewTemplates
             List<View> vtList = Utils.GetAllViewTemplates(doc);
 
             // set the path for the source document
-            string sourcePath = @"S:\Shared Folders\Lifestyle USA Design\Library 2023\Template\View Templates.rvt";
+            string revitFile = @"S:\Shared Folders\Lifestyle USA Design\Library 2024\Template\View Templates.rvt";
 
             using (Transaction t = new Transaction(doc))
             {
@@ -52,14 +52,14 @@ namespace UpdateViewTemplates
                         {
                             doc.Delete(curView.Id);
                         }                        
-                    }
-
-                    // transfer view templates from template file
+                    }                    
                 }
 
                 t.Commit();
             }
-            
+
+            Utils.LoadViewTemplates(uiapp, doc, revitFile);
+
             return Result.Succeeded;
         }
 
